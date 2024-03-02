@@ -1,43 +1,43 @@
-export default function Root() {
+
+import {Link} from 'react-router-dom'
+import logo from '../assets/img/argentBankLogo.png'
+import '../index.css';
+import { Outlet } from "react-router-dom";
+
+
+const  Root = () => {
     return (
-      <>
-        <div id="sidebar">
-          <h1>React Router Contacts</h1>
-          <div>
-            <form id="search-form" role="search">
-              <input
-                id="q"
-                aria-label="Search contacts"
-                placeholder="Search"
-                type="search"
-                name="q"
-              />
-              <div
-                id="search-spinner"
-                aria-hidden
-                hidden={true}
-              />
-              <div
-                className="sr-only"
-                aria-live="polite"
-              ></div>
-            </form>
-            <form method="post">
-              <button type="submit">New</button>
-            </form>
-          </div>
-          <nav>
-            <ul>
-              <li>
-                <a href={`/contacts/1`}>Your Name</a>
-              </li>
-              <li>
-                <a href={`/contacts/2`}>Your Friend</a>
-              </li>
-            </ul>
-          </nav>
+        <body>
+        {/* header */}
+        <nav className="main-nav">
+        <Link className="main-nav-logo" to={'/'}>
+            {/* TODO: tailwind ?? */}
+          <img
+            className="main-nav-logo-image"
+            src={logo}
+            alt="Argent Bank Logo"
+            />
+          <h1 className="sr-only">Argent Bank</h1>
+        </Link>
+        <div>
+          <Link className="main-nav-item" to={'signin'}>
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
         </div>
-        <div id="detail"></div>
-      </>
+      </nav>
+      
+      {/* pages content */}
+      <main className="page-content-container">
+      <Outlet/>
+      </main>
+
+      <footer className="footer">
+        <p className="footer-text">Copyright 2020 Argent Bank</p>
+      </footer>
+
+        </body>
     );
   }
+
+  export default Root

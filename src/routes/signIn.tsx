@@ -1,4 +1,5 @@
 export const SignIn = () => {
-return <p>Je suis un composant</p>
+    console.log('je suis la');
+return <p>Je suis un composant SINGOIN</p>
 }
 export default SignIn;

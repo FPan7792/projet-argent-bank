@@ -8,7 +8,7 @@ import {
 import Root from './routes/root'
 import Home from './routes/home'
 import User from './routes/user'
-import SignIn from "./routes/signIn";
+import SignIn from "./routes/signin";
 import ErrorBoundary from "./routes/errorBoundary";
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "home",
+        path: "/",
         element: <Home />,
       },
       {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <User />,
       },
       {
-        path: "signIn",
+        path: "signin",
         element: <SignIn />,
       },
       // {
