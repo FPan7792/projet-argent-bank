@@ -14,11 +14,11 @@ body {
 }
 
 .main {
-  flex: 1;
 }
 
 .bg-dark {
   background-color: #12002b;
+  flex-grow: 1;
 }
 
 .sr-only {
@@ -102,7 +102,7 @@ body {
 
 .page-content-container {
   flex-grow: 1;
-  height: 100%;
+  display: flex;
 }
 
 @media (min-width: 920px) {
