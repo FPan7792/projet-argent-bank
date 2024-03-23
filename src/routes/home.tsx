@@ -1,17 +1,16 @@
-import HomeReinsurance from '../components/HomeReinssurance';
-import {featureItems} from '../datas/datas'
-import '../styles/index.css';
+import HomeReinsurance from "../components/HomeReinssurance";
+import { featureItems } from "../datas/datas";
+import "../styles/index.css";
 
-import iconChat from '../assets/img/icon-chat.png'
-import iconMoney from '../assets/img/icon-money.png'
-import iconSecurity from '../assets/img/icon-security.png'
+import iconChat from "../assets/img/icon-chat.png";
+import iconMoney from "../assets/img/icon-money.png";
+import iconSecurity from "../assets/img/icon-security.png";
 
 export const Home = () => {
+  const icons = [iconChat, iconMoney, iconSecurity];
 
-  const icons = [iconChat, iconMoney, iconSecurity]
-
-return (
-<main>
+  return (
+    <main>
       <div className="hero">
         <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
@@ -23,9 +22,11 @@ return (
       </div>
       <section className="features">
         <h2 className="sr-only">Features</h2>
-        { featureItems.map((item, index) => <HomeReinsurance key={index} item={item} icon={icons[index]} /> )}
+        {featureItems.map((item, index) => (
+          <HomeReinsurance key={index} item={item} icon={icons[index]} />
+        ))}
       </section>
-</main>
-)
-}
+    </main>
+  );
+};
 export default Home;
