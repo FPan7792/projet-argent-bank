@@ -1,13 +1,14 @@
 
 import {Link} from 'react-router-dom'
 import logo from '../assets/img/argentBankLogo.png'
-import '../index.css';
+import '../styles/index.css';
 import { Outlet } from "react-router-dom";
+
 
 
 const  Root = () => {
     return (
-        <body>
+        <>
         {/* header */}
         <nav className="main-nav">
         <Link className="main-nav-logo" to={'/'}>
@@ -36,7 +37,7 @@ const  Root = () => {
         <p className="footer-text">Copyright 2020 Argent Bank</p>
       </footer>
 
-        </body>
+        </>
     );
   }
 
