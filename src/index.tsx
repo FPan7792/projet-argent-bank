@@ -1,13 +1,11 @@
-import * as React from "react";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { store } from "./state/store";
+import { Provider } from "react-redux";
 
-import Root from './routes/root'
-import Home from './routes/home'
-import User from './routes/user'
+import Root from "./routes/root";
+import Home from "./routes/home";
+import User from "./routes/user";
 import SignIn from "./routes/signin";
 import ErrorBoundary from "./routes/errorBoundary";
 
@@ -29,24 +27,26 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       // {
-        // element: <AuthLayout />,
-        // children: [
-        //   {
-        //     path: "login",
-        //     element: <Login />,
-        //     loader: redirectIfUser,
-        //   },
-        //   {
-        //     path: "logout",
-        //     action: logoutUser,
-        //   },
-        // ],
+      // element: <AuthLayout />,
+      // children: [
+      //   {
+      //     path: "login",
+      //     element: <Login />,
+      //     loader: redirectIfUser,
+      //   },
+      //   {
+      //     path: "logout",
+      //     action: logoutUser,
+      //   },
+      // ],
       // },
     ],
-    errorElement: <ErrorBoundary />
+    errorElement: <ErrorBoundary />,
   },
 ]);
 
 createRoot(document.getElementById("root") as Element).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

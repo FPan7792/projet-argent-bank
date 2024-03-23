@@ -1,5 +1,14 @@
+import { useSelector, useDispatch } from "react-redux";
+import {} from "../state/user/userSlice";
 import "../styles/index.css";
+import { RootState, AppDispatch } from "../state/store";
+
 export const SignIn = () => {
+  const user = useSelector((state: RootState) => state.userState);
+  const dispatch = useDispatch();
+
+  console.log(user, "user");
+
   return (
     <div className="main bg-dark">
       <section className="sign-in-content">
@@ -28,3 +37,26 @@ export const SignIn = () => {
   );
 };
 export default SignIn;
+
+// export function Counter() {
+
+//   return (
+//     <div>
+//       <div>
+//         <button
+//           aria-label="Increment value"
+//           onClick={() => dispatch(increment())}
+//         >
+//           Increment
+//         </button>
+//         <span>{count}</span>
+//         <button
+//           aria-label="Decrement value"
+//           onClick={() => dispatch(decrement())}
+//         >
+//           Decrement
+//         </button>
+//       </div>
+//     </div>
+//   )
+// }
