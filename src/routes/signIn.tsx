@@ -4,7 +4,6 @@ import {
   setConnection,
   asyncGetUser,
 } from "../state/user/userSlice";
-
 import "../styles/index.css";
 import { RootState, AppDispatch } from "../state/store";
 import { useEffect, useState } from "react";
@@ -41,8 +40,6 @@ export const SignIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user, "usrhj");
-
     try {
       const userCheckup = async () => {
         if (user?.sessionToken) {
@@ -57,7 +54,7 @@ export const SignIn = () => {
     } catch (error) {
       alert(error);
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, navigate]);
 
   // const test = () => {
   //   console.log(user);
@@ -90,15 +87,10 @@ export const SignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-          {/* <a href="./user.html" className="sign-in-button">Sign In</a> */}
-          {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
+          {/* submit btn */}
           <button className="sign-in-button">Sign In</button>
         </form>
       </section>
-
-      {/* TODO: remove section below */}
-      {/* <button onClick={() => dispatch(getUser({}))}>click to getr</button> */}
     </div>
   );
 };
