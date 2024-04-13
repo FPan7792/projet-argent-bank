@@ -12,7 +12,7 @@ interface UserState {
   sessionToken?: string;
 }
 
-let initialState: UserState = {
+const initialState: UserState = {
   isConnected: false,
 };
 
@@ -33,12 +33,15 @@ export const userSlice = createSlice({
           break;
       }
     },
+    logOut: (state) => {
+      console.log(state);
+      return (state = { ...initialState });
+    },
     getUser: (state, { payload }) => {
-      state = { ...state, credentials: payload.credentials };
-      console.log("state", state);
+      return (state = { ...state, credentials: payload.credentials });
     },
     updateUser: (state, action: PayloadAction<UserState["credentials"]>) => {
-      state = { ...state, credentials: action.payload };
+      return (state = { ...state, credentials: action.payload });
     },
   },
   extraReducers: (builder) => {
@@ -148,6 +151,6 @@ export const asyncGetUser = createAsyncThunk(
 );
 
 // Action creators are generated for each case reducer function
-export const { getUser, updateUser, setConnection } = userSlice.actions;
+export const { getUser, updateUser, setConnection, logOut } = userSlice.actions;
 
 export default userSlice.reducer;
