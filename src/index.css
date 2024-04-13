@@ -54,10 +54,16 @@ body {
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .main-nav-item:hover {
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.logout-btn {
+  cursor: pointer;
 }
 
 .main-nav-logo {
@@ -71,7 +77,7 @@ body {
 }
 
 .hero {
-  background-image: url('../src/assets/img/bank-tree.jpeg');
+  background-image: url("../src/assets/img/bank-tree.jpeg");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
