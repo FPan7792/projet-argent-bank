@@ -45,7 +45,6 @@ export const SignIn = () => {
         if (user?.sessionToken) {
           await dispatch(asyncGetUser(user.sessionToken));
           if (user.credentials) {
-            console.log("on les a ", user.credentials);
             return navigate("/user");
           } else return null;
         }
