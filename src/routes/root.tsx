@@ -4,12 +4,12 @@ import "../styles/index.css";
 import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { RootState } from "../state/store";
+import { RootState, AppDispatch } from "../state/store";
 import { logOut } from "../state/user/userSlice";
 
 const Root = () => {
   const user = useSelector((state: RootState) => state.userState);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,13 +38,19 @@ const Root = () => {
               Sign In
             </Link>
           ) : (
-            <div
-              onClick={() => dispatch(logOut())}
-              className="main-nav-item logout-btn"
-              style={{ cursor: "pointer" }}
-            >
-              <i className="fa fa-sign-out"></i>
-              Sign Out
+            <div>
+              <Link className="main-nav-item" to="/user">
+                <i className="fa fa-user-circle"></i>
+                {user.credentials?.userName}
+              </Link>
+              <span
+                onClick={() => dispatch(logOut())}
+                style={{ cursor: "pointer" }}
+                className="main-nav-item"
+              >
+                <i className="fa fa-sign-out"></i>
+                Sign Out
+              </span>
             </div>
           )}
         </div>
