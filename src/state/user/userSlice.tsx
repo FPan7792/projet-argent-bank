@@ -3,11 +3,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface UserState {
   isConnected: boolean;
   credentials?: {
-    email: string;
-    firstName: string;
-    lastName: string;
+    email: Readonly<string>;
+    firstName: Readonly<string>;
+    lastName: Readonly<string>;
     userName: string;
-    id: string;
+    id: Readonly<string>;
   };
   sessionToken?: string;
 }
@@ -72,25 +72,36 @@ export const userSlice = createSlice({
           });
         }
       );
+    builder
+      .addCase(asyncUpdateUserInfos.pending, () => {
+        console.log("updating user");
+      })
+      .addCase(
+        asyncUpdateUserInfos.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          if (state.credentials) {
+            return (state = {
+              ...state,
+              credentials: { ...state.credentials, userName: action.payload },
+            });
+          }
+        }
+      );
   },
 });
 
-// export type BadRequest = {
-//   status: number;
-//   message: string;
-// };
-
-type UserResponse = {
-  message: string;
+type APIResponse = {
   status: number;
+  message: string;
+};
+
+interface UserResponse extends APIResponse {
   body?: {
     token: string;
   };
-};
+}
 
-type UserInfosResponse = {
-  message: string;
-  status: number;
+interface UserInfosResponse extends APIResponse {
   body?: {
     email: string;
     firstName: string;
@@ -100,7 +111,14 @@ type UserInfosResponse = {
     updatedAt: string;
     id: string;
   };
-};
+}
+
+interface UserUpdateResponse extends APIResponse {
+  body?: {
+    id: string;
+    email: string;
+  };
+}
 
 export const setAsyncConnection = createAsyncThunk(
   "user/asyncConnexion",
@@ -143,6 +161,42 @@ export const asyncGetUser = createAsyncThunk(
       if (userData.status !== 200) {
         throw new Error("no user fetched");
       } else return userData.body;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const asyncUpdateUserInfos = createAsyncThunk(
+  "user/asyncUpdateUserInfos",
+  async (credentials: string) => {
+    try {
+      const { token, updatedInfo, newValue } = JSON.parse(credentials);
+
+      let sentDatas: Record<string, string> = {};
+      sentDatas[updatedInfo] = newValue;
+
+      if (token && updatedInfo && newValue) {
+        const updateInfo = await fetch(
+          "http://127.0.0.1:3001/api/v1/user/profile",
+          {
+            method: "PUT",
+            credentials: "same-origin",
+            body: JSON.stringify(sentDatas),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const userData: UserUpdateResponse = await updateInfo.json();
+        if (userData.status !== 200) {
+          throw new Error("user couldn't be updated");
+        } else return newValue;
+      } else
+        throw new Error(
+          "some credentials are missing in order to reach update"
+        );
     } catch (error) {
       throw error;
     }

@@ -1,17 +1,17 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./user.css";
-import { RootState, AppDispatch } from "../../state/store";
+import { RootState } from "../../state/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditForm from "../../components/EditForm/EditForm";
 
 export const User = () => {
   const user = useSelector((state: RootState) => state.userState);
-  //   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const [isOpenEdition, setIsOpenEdition] = useState<boolean>(false);
 
+  // TODO: remove it
   console.log("USER", user);
 
   useEffect(() => {
@@ -38,13 +38,7 @@ export const User = () => {
             </button>
           </div>
         ) : (
-          <div className="edit-form-container">
-            <EditForm />
-            <div className="edit-form-btns">
-              <button>Save</button>
-              <button onClick={() => setIsOpenEdition(false)}>Cancel</button>
-            </div>
-          </div>
+          <EditForm setIsDisplayed={setIsOpenEdition} />
         )}
       </div>
       <h2 className="sr-only">Accounts</h2>

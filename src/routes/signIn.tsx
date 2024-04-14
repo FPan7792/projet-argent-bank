@@ -55,9 +55,6 @@ export const SignIn = () => {
     }
   }, [dispatch, user, navigate]);
 
-  // const test = () => {
-  //   console.log(user);
-  // };
   return (
     <div className="main bg-dark">
       <section className="sign-in-content">
