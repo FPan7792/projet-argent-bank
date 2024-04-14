@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 
 import Root from "./routes/root";
 import Home from "./routes/home";
-import User from "./routes/user";
+import User from "./routes/User/user";
 import SignIn from "./routes/signin";
 import ErrorBoundary from "./routes/errorBoundary";
 

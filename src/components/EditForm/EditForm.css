@@ -1,0 +1,19 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin-inline: auto;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-form > div {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.edit-form input {
+  height: 25px;
+}

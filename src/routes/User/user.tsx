@@ -1,14 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-
-import "../styles/index.css";
-import { RootState, AppDispatch } from "../state/store";
+import "./user.css";
+import { RootState, AppDispatch } from "../../state/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EditForm from "../../components/EditForm/EditForm";
 
 export const User = () => {
   const user = useSelector((state: RootState) => state.userState);
   //   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  const [isOpenEdition, setIsOpenEdition] = useState<boolean>(false);
 
   console.log("USER", user);
 
@@ -21,12 +23,29 @@ export const User = () => {
   return (
     <div className="main bg-dark">
       <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          {`${user.credentials?.firstName} ${user.credentials?.lastName}`}
-        </h1>
-        <button className="edit-button">Edit Name</button>
+        {!isOpenEdition ? (
+          <div>
+            <h1>
+              Welcome back
+              <br />
+              {`${user.credentials?.firstName} ${user.credentials?.lastName}`}
+            </h1>
+            <button
+              onClick={() => setIsOpenEdition(true)}
+              className="edit-button"
+            >
+              Edit Name
+            </button>
+          </div>
+        ) : (
+          <div className="edit-form-container">
+            <EditForm />
+            <div className="edit-form-btns">
+              <button>Save</button>
+              <button onClick={() => setIsOpenEdition(false)}>Cancel</button>
+            </div>
+          </div>
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
