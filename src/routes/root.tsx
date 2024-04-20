@@ -1,29 +1,19 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/argentBankLogo.png";
 import "../styles/index.css";
 import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { RootState, AppDispatch } from "../state/store";
 import { logOut } from "../state/user/userSlice";
 
 const Root = () => {
   const user = useSelector((state: RootState) => state.userState);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user.isConnected) {
-      navigate("/signin");
-    }
-  }, [user, dispatch, navigate]);
-
   return (
     <>
       {/* header */}
       <nav className="main-nav">
         <Link className="main-nav-logo" to={"/"}>
-          {/* TODO: tailwind ?? */}
           <img
             className="main-nav-logo-image"
             src={logo}
