@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import Root from "./routes/root";
 import Home from "./routes/home";
 import User from "./routes/User/user";
-import SignIn from "./routes/signin";
+import SignIn from "./routes/signIn";
 import ErrorBoundary from "./routes/errorBoundary";
 
 const router = createBrowserRouter([
@@ -26,20 +26,6 @@ const router = createBrowserRouter([
         path: "signin",
         element: <SignIn />,
       },
-      // {
-      // element: <AuthLayout />,
-      // children: [
-      //   {
-      //     path: "login",
-      //     element: <Login />,
-      //     loader: redirectIfUser,
-      //   },
-      //   {
-      //     path: "logout",
-      //     action: logoutUser,
-      //   },
-      // ],
-      // },
     ],
     errorElement: <ErrorBoundary />,
   },
