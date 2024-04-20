@@ -34,7 +34,6 @@ export const userSlice = createSlice({
       }
     },
     logOut: (state) => {
-      console.log(state);
       return (state = { ...initialState });
     },
     getUser: (state, { payload }) => {
@@ -46,9 +45,7 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setAsyncConnection.pending, () => {
-        console.log("fetching");
-      })
+      .addCase(setAsyncConnection.pending, () => {})
       .addCase(
         setAsyncConnection.fulfilled,
         (state, action: PayloadAction<UserResponse["body"]>) => {
@@ -60,9 +57,7 @@ export const userSlice = createSlice({
         }
       );
     builder
-      .addCase(asyncGetUser.pending, () => {
-        console.log("fetching user");
-      })
+      .addCase(asyncGetUser.pending, () => {})
       .addCase(
         asyncGetUser.fulfilled,
         (state, action: PayloadAction<UserInfosResponse["body"]>) => {
@@ -73,9 +68,7 @@ export const userSlice = createSlice({
         }
       );
     builder
-      .addCase(asyncUpdateUserInfos.pending, () => {
-        console.log("updating user");
-      })
+      .addCase(asyncUpdateUserInfos.pending, () => {})
       .addCase(
         asyncUpdateUserInfos.fulfilled,
         (state, action: PayloadAction<string>) => {
