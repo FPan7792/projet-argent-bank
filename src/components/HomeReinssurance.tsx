@@ -1,19 +1,23 @@
-import '../styles/index.css';
+import "../styles/index.css";
 
 export interface Props {
   item: HomeFeatureItem;
-  icon : string
+  icon: string;
 }
-export const HomeReinsurance = ( props: Props ) => {
-  const { item, icon } = props
+export const HomeReinsurance = (props: Props) => {
+  const { item, icon } = props;
 
   return (
     <div className="feature-item">
-        <img src={icon.includes(item.imgIcon) ? icon : ''} alt={item.imgAlt} className="feature-icon" />
-        <h3 className="feature-item-title">{item.itemTitle}</h3>
-        <p>
-          {item.itemDescription}
-        </p>
+      <img
+        width={100}
+        height={100}
+        src={icon.includes(item.imgIcon) ? icon : ""}
+        alt={item.imgAlt}
+        className="feature-icon"
+      />
+      <h3 className="feature-item-title">{item.itemTitle}</h3>
+      <p>{item.itemDescription}</p>
     </div>
   );
 };
