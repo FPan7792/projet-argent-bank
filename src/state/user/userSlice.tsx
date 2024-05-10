@@ -130,9 +130,10 @@ export const setAsyncConnection = createAsyncThunk(
       );
       const connexionData: UserResponse = await getConnexion.json();
       if (connexionData.status !== 200) {
-        throw new Error("no data fetched");
+        throw new Error(connexionData.message);
       } else return connexionData.body;
     } catch (error) {
+      alert(error);
       throw error;
     }
   }
